@@ -1,0 +1,8 @@
+fecha_hora,nivel,tipo,detalle
+13/11/2026 23:10:08,ALTA,Fuerza bruta,"198.51.100.23 abrió 20 conexiones a SSH de 192.168.1.20 (23:10:08 → 02:02:05), mediana 2,364 bytes c/u"
+13/11/2026 23:13:09,ALTA,Fuerza bruta,"203.0.113.77 abrió 21 conexiones a SSH de 192.168.1.20 (23:13:09 → 02:17:42), mediana 2,373 bytes c/u"
+13/11/2026 23:16:11,ALTA,Fuerza bruta,"192.0.2.150 abrió 20 conexiones a SSH de 192.168.1.20 (23:16:11 → 02:08:07), mediana 2,361 bytes c/u"
+14/11/2026 02:17:42,ALTA,Sesión distinta tras fuerza bruta,"203.0.113.77 → 192.168.1.20:22: 85,063 bytes en 749 s (36 veces la mediana de sus intentos). Sugiere que el acceso funcionó: cruzar con auth.log"
+14/11/2026 02:24:52,ALTA,Posible exfiltración,"192.168.1.20 subió 900,125 bytes a 198.51.100.200:80 y recibió solo 83 (0.7 s)"
+14/11/2026 02:24:52,MEDIA,IP directa sin DNS,192.168.1.20 se conectó a 198.51.100.200:80 sin haber resuelto ningún nombre que apunte a esa IP
+14/11/2026 02:24:52,ALTA,HTTP sospechoso,"PUT http://198.51.100.200/up desde 192.168.1.20 (User-Agent: curl/8.5.0): PUT de 900,000 bytes; el Host es una IP, no un nombre"

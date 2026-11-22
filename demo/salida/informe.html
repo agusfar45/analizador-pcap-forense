@@ -1,0 +1,76 @@
+<!doctype html><html lang="es"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>Análisis de captura de red</title>
+<style>
+body{font-family:system-ui,sans-serif;max-width:1040px;margin:auto;padding:16px;color:#1d2433;background:#f5f6f8}
+h1{margin-bottom:4px} h2{border-bottom:2px solid #1d2433;padding-bottom:4px;margin-top:32px}
+.meta{color:#555;font-size:14px} code{font-size:13px;word-break:break-all}
+table{border-collapse:collapse;width:100%;background:#fff;font-size:13.5px}
+th,td{text-align:left;padding:6px 8px;border-bottom:1px solid #e3e5ea;vertical-align:top} th{background:#eceef2}
+td.n{text-align:right;font-variant-numeric:tabular-nums}
+.ALTA td:first-child{border-left:4px solid #c0392b} .ALTA{background:#fdecea}
+.MEDIA td:first-child{border-left:4px solid #e67e22} .MEDIA{background:#fff4e6}
+.tarjetas{display:flex;gap:12px;flex-wrap:wrap} .tarjetas div{background:#fff;padding:10px 14px;border-radius:6px;flex:1;min-width:130px}
+.tarjetas b{display:block;font-size:24px} .rojo b{color:#c0392b}
+.barra{background:#2c6fbb;height:10px;border-radius:2px;display:inline-block}
+.barra.sube{background:#c0392b}
+</style>
+<h1>Análisis de captura de red</h1>
+<p class="meta">Archivo: <code>incidente_servidor.pcap</code> · 1,296,445 bytes<br>
+SHA-256: <code>ba65aa86b4f810c41a4bd3d17270a90a0c995bccddf772280da3ed27c9e51036</code><br>
+13/11/2026 23:00:05 → 14/11/2026 05:07:00 (UTC-3) · Generado 21/11/2026 22:37 con analizar_pcap.py</p>
+<div class="tarjetas"><div><b>1,417</b>paquetes</div><div><b>71</b>conversaciones</div>
+<div><b>4</b>nombres DNS</div><div><b>4</b>pedidos web</div>
+<div class="rojo"><b>6</b>alertas altas</div></div>
+<h2>Alertas</h2><p class='meta'>Indicios generados automáticamente: cada uno se confirma contra la captura (Wireshark) y otras fuentes antes de ir a un informe.</p><table><tr><th>Hora</th><th>Nivel</th><th>Tipo</th><th>Detalle</th></tr>
+<tr class='ALTA'><td>13/11/2026 23:10:08</td><td>ALTA</td><td>Fuerza bruta</td><td>198.51.100.23 abrió 20 conexiones a SSH de 192.168.1.20 (23:10:08 → 02:02:05), mediana 2,364 bytes c/u</td></tr>
+<tr class='ALTA'><td>13/11/2026 23:13:09</td><td>ALTA</td><td>Fuerza bruta</td><td>203.0.113.77 abrió 21 conexiones a SSH de 192.168.1.20 (23:13:09 → 02:17:42), mediana 2,373 bytes c/u</td></tr>
+<tr class='ALTA'><td>13/11/2026 23:16:11</td><td>ALTA</td><td>Fuerza bruta</td><td>192.0.2.150 abrió 20 conexiones a SSH de 192.168.1.20 (23:16:11 → 02:08:07), mediana 2,361 bytes c/u</td></tr>
+<tr class='ALTA'><td>14/11/2026 02:17:42</td><td>ALTA</td><td>Sesión distinta tras fuerza bruta</td><td>203.0.113.77 → 192.168.1.20:22: 85,063 bytes en 749 s (36 veces la mediana de sus intentos). Sugiere que el acceso funcionó: cruzar con auth.log</td></tr>
+<tr class='ALTA'><td>14/11/2026 02:24:52</td><td>ALTA</td><td>Posible exfiltración</td><td>192.168.1.20 subió 900,125 bytes a 198.51.100.200:80 y recibió solo 83 (0.7 s)</td></tr>
+<tr class='MEDIA'><td>14/11/2026 02:24:52</td><td>MEDIA</td><td>IP directa sin DNS</td><td>192.168.1.20 se conectó a 198.51.100.200:80 sin haber resuelto ningún nombre que apunte a esa IP</td></tr>
+<tr class='ALTA'><td>14/11/2026 02:24:52</td><td>ALTA</td><td>HTTP sospechoso</td><td>PUT http://198.51.100.200/up desde 192.168.1.20 (User-Agent: curl/8.5.0): PUT de 900,000 bytes; el Host es una IP, no un nombre</td></tr>
+</table>
+<h2>Conversaciones con más tráfico</h2><table><tr><th>Inicio</th><th>Cliente</th><th>Servidor</th><th>Servicio</th><th>Subida</th><th>Bajada</th><th>Duración</th></tr>
+<tr><td>14/11/2026 02:24:52</td><td><code>192.168.1.20:51514</code></td><td><code>198.51.100.200:80</code></td><td>HTTP</td><td class='n'>900,125 <span class='barra sube' style='width:60px'></span></td><td class='n'>83 <span class='barra' style='width:0px'></span></td><td class='n'>0.7 s</td></tr>
+<tr><td>14/11/2026 02:17:42</td><td><code>203.0.113.77:56974</code></td><td><code>192.168.1.20:22</code></td><td>SSH</td><td class='n'>24,023 <span class='barra sube' style='width:2px'></span></td><td class='n'>61,040 <span class='barra' style='width:4px'></span></td><td class='n'>749.2 s</td></tr>
+<tr><td>13/11/2026 23:00:05</td><td><code>192.168.1.20:45836</code></td><td><code>192.0.2.80:443</code></td><td>TLS</td><td class='n'>407 <span class='barra sube' style='width:0px'></span></td><td class='n'>41,506 <span class='barra' style='width:3px'></span></td><td class='n'>0.2 s</td></tr>
+<tr><td>14/11/2026 01:30:00</td><td><code>192.168.1.20:50850</code></td><td><code>192.0.2.44:443</code></td><td>TLS</td><td class='n'>406 <span class='barra sube' style='width:0px'></span></td><td class='n'>13,506 <span class='barra' style='width:1px'></span></td><td class='n'>0.2 s</td></tr>
+<tr><td>14/11/2026 05:02:00</td><td><code>192.168.1.10:54716</code></td><td><code>192.168.1.20:22</code></td><td>SSH</td><td class='n'>3,023 <span class='barra sube' style='width:0px'></span></td><td class='n'>9,040 <span class='barra' style='width:1px'></span></td><td class='n'>300.2 s</td></tr>
+<tr><td>14/11/2026 01:19:51</td><td><code>203.0.113.77:40013</code></td><td><code>192.168.1.20:22</code></td><td>SSH</td><td class='n'>1,348 <span class='barra sube' style='width:0px'></span></td><td class='n'>1,376 <span class='barra' style='width:0px'></span></td><td class='n'>2.7 s</td></tr>
+<tr><td>13/11/2026 23:37:16</td><td><code>198.51.100.23:56050</code></td><td><code>192.168.1.20:22</code></td><td>SSH</td><td class='n'>1,255 <span class='barra sube' style='width:0px'></span></td><td class='n'>1,432 <span class='barra' style='width:0px'></span></td><td class='n'>2.7 s</td></tr>
+<tr><td>14/11/2026 00:34:37</td><td><code>203.0.113.77:52016</code></td><td><code>192.168.1.20:22</code></td><td>SSH</td><td class='n'>1,313 <span class='barra sube' style='width:0px'></span></td><td class='n'>1,367 <span class='barra' style='width:0px'></span></td><td class='n'>2.7 s</td></tr>
+<tr><td>14/11/2026 01:50:01</td><td><code>192.0.2.150:48808</code></td><td><code>192.168.1.20:22</code></td><td>SSH</td><td class='n'>1,398 <span class='barra sube' style='width:0px'></span></td><td class='n'>1,266 <span class='barra' style='width:0px'></span></td><td class='n'>2.7 s</td></tr>
+<tr><td>14/11/2026 00:22:32</td><td><code>198.51.100.23:54892</code></td><td><code>192.168.1.20:22</code></td><td>SSH</td><td class='n'>1,366 <span class='barra sube' style='width:0px'></span></td><td class='n'>1,294 <span class='barra' style='width:0px'></span></td><td class='n'>2.7 s</td></tr>
+<tr><td>14/11/2026 01:59:04</td><td><code>192.0.2.150:57451</code></td><td><code>192.168.1.20:22</code></td><td>SSH</td><td class='n'>1,402 <span class='barra sube' style='width:0px'></span></td><td class='n'>1,200 <span class='barra' style='width:0px'></span></td><td class='n'>2.7 s</td></tr>
+<tr><td>14/11/2026 00:31:36</td><td><code>198.51.100.23:59812</code></td><td><code>192.168.1.20:22</code></td><td>SSH</td><td class='n'>1,192 <span class='barra sube' style='width:0px'></span></td><td class='n'>1,384 <span class='barra' style='width:0px'></span></td><td class='n'>2.7 s</td></tr>
+<tr><td>14/11/2026 00:19:31</td><td><code>192.0.2.150:50580</code></td><td><code>192.168.1.20:22</code></td><td>SSH</td><td class='n'>1,159 <span class='barra sube' style='width:0px'></span></td><td class='n'>1,403 <span class='barra' style='width:0px'></span></td><td class='n'>2.7 s</td></tr>
+<tr><td>14/11/2026 01:07:47</td><td><code>198.51.100.23:40779</code></td><td><code>192.168.1.20:22</code></td><td>SSH</td><td class='n'>1,365 <span class='barra sube' style='width:0px'></span></td><td class='n'>1,195 <span class='barra' style='width:0px'></span></td><td class='n'>2.7 s</td></tr>
+<tr><td>14/11/2026 00:25:34</td><td><code>203.0.113.77:59157</code></td><td><code>192.168.1.20:22</code></td><td>SSH</td><td class='n'>1,139 <span class='barra sube' style='width:0px'></span></td><td class='n'>1,415 <span class='barra' style='width:0px'></span></td><td class='n'>2.7 s</td></tr>
+</table>
+<h2>Consultas DNS</h2><table><tr><th>Hora</th><th>Cliente</th><th>Nombre</th><th>Tipo</th><th>Respuesta</th></tr>
+<tr><td>13/11/2026 23:00:05</td><td>192.168.1.20</td><td><code>repo.ubuntu-mirror.example.com</code></td><td>A</td><td>192.0.2.80</td></tr>
+<tr><td>13/11/2026 23:01:00</td><td>192.168.1.20</td><td><code>ntp.example.org</code></td><td>A</td><td>192.0.2.123</td></tr>
+<tr><td>14/11/2026 01:30:00</td><td>192.168.1.20</td><td><code>api.contable-nube.example.net</code></td><td>A</td><td>192.0.2.44</td></tr>
+<tr><td>14/11/2026 03:15:00</td><td>192.168.1.20</td><td><code>noticias.impuestos.example.org</code></td><td>A</td><td>192.0.2.90</td></tr>
+</table>
+<h2>Sitios HTTPS (SNI)</h2><p class='meta'>El nombre del sitio viaja sin cifrar en el TLS ClientHello; el contenido no se ve.</p><table><tr><th>Hora</th><th>Cliente</th><th>Sitio</th><th>Servidor</th></tr>
+<tr><td>13/11/2026 23:00:05</td><td>192.168.1.20</td><td><code>repo.ubuntu-mirror.example.com</code></td><td><code>192.0.2.80:443</code></td></tr>
+<tr><td>14/11/2026 01:30:00</td><td>192.168.1.20</td><td><code>api.contable-nube.example.net</code></td><td><code>192.0.2.44:443</code></td></tr>
+</table>
+<h2>Pedidos HTTP</h2><table><tr><th>Hora</th><th>Cliente</th><th>Pedido</th><th>Respuesta</th><th>User-Agent</th></tr>
+<tr><td>14/11/2026 02:24:52</td><td>192.168.1.20</td><td><code>PUT http://198.51.100.200/up</code> (900,000 B)</td><td>201 Created</td><td>curl/8.5.0</td></tr>
+<tr><td>14/11/2026 03:15:00</td><td>192.168.1.20</td><td><code>GET http://noticias.impuestos.example.org/vencimientos?mes=11</code></td><td>200 OK</td><td>Wget/1.21.4</td></tr>
+</table>
+<h2>Hosts</h2><table><tr><th>IP</th><th>Tipo</th><th>Enviados</th><th>Recibidos</th><th>Nombre DNS</th></tr>
+<tr><td><code>192.168.1.20</code></td><td>privada</td><td class='n'>1,094,542</td><td class='n'>179,207</td><td></td></tr>
+<tr><td><code>198.51.100.200</code></td><td>pública</td><td class='n'>299</td><td class='n'>935,117</td><td></td></tr>
+<tr><td><code>203.0.113.77</code></td><td>pública</td><td class='n'>54,847</td><td class='n'>91,556</td><td></td></tr>
+<tr><td><code>198.51.100.23</code></td><td>pública</td><td class='n'>29,874</td><td class='n'>28,626</td><td></td></tr>
+<tr><td><code>192.0.2.150</code></td><td>pública</td><td class='n'>30,352</td><td class='n'>27,385</td><td></td></tr>
+<tr><td><code>192.0.2.80</code></td><td>pública</td><td class='n'>43,288</td><td class='n'>731</td><td>repo.ubuntu-mirror.example.com</td></tr>
+<tr><td><code>192.0.2.44</code></td><td>pública</td><td class='n'>14,208</td><td class='n'>730</td><td>api.contable-nube.example.net</td></tr>
+<tr><td><code>192.168.1.10</code></td><td>privada</td><td class='n'>3,455</td><td class='n'>9,580</td><td></td></tr>
+<tr><td><code>192.0.2.90</code></td><td>pública</td><td class='n'>2,282</td><td class='n'>383</td><td>noticias.impuestos.example.org</td></tr>
+<tr><td><code>192.168.1.1</code></td><td>privada</td><td class='n'>512</td><td class='n'>344</td><td></td></tr>
+<tr><td><code>192.0.2.123</code></td><td>pública</td><td class='n'>90</td><td class='n'>90</td><td>ntp.example.org</td></tr>
+</table></html>

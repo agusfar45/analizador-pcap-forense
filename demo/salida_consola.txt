@@ -1,0 +1,41 @@
+Captura: demo\incidente_servidor.pcap
+SHA-256: ba65aa86b4f810c41a4bd3d17270a90a0c995bccddf772280da3ed27c9e51036
+1,417 paquetes, 1,273,749 bytes · 13/11/2026 23:00:05 → 14/11/2026 05:07:00 (UTC-3)
+Protocolos: TCP datos (continuación / cifrado) 880, TCP sin datos (SYN/ACK/FIN) 396, SSH 124, DNS 8, HTTP 5, TLS 2, UDP (otro) 2
+
+=== Alertas (7) — indicios a verificar ===
+[ALTA ] 13/11/2026 23:10:08  Fuerza bruta: 198.51.100.23 abrió 20 conexiones a SSH de 192.168.1.20 (23:10:08 → 02:02:05), mediana 2,364 bytes c/u
+[ALTA ] 13/11/2026 23:13:09  Fuerza bruta: 203.0.113.77 abrió 21 conexiones a SSH de 192.168.1.20 (23:13:09 → 02:17:42), mediana 2,373 bytes c/u
+[ALTA ] 13/11/2026 23:16:11  Fuerza bruta: 192.0.2.150 abrió 20 conexiones a SSH de 192.168.1.20 (23:16:11 → 02:08:07), mediana 2,361 bytes c/u
+[ALTA ] 14/11/2026 02:17:42  Sesión distinta tras fuerza bruta: 203.0.113.77 → 192.168.1.20:22: 85,063 bytes en 749 s (36 veces la mediana de sus intentos). Sugiere que el acceso funcionó: cruzar con auth.log
+[ALTA ] 14/11/2026 02:24:52  Posible exfiltración: 192.168.1.20 subió 900,125 bytes a 198.51.100.200:80 y recibió solo 83 (0.7 s)
+[MEDIA] 14/11/2026 02:24:52  IP directa sin DNS: 192.168.1.20 se conectó a 198.51.100.200:80 sin haber resuelto ningún nombre que apunte a esa IP
+[ALTA ] 14/11/2026 02:24:52  HTTP sospechoso: PUT http://198.51.100.200/up desde 192.168.1.20 (User-Agent: curl/8.5.0): PUT de 900,000 bytes; el Host es una IP, no un nombre
+
+=== Consultas DNS ===
+    1×  repo.ubuntu-mirror.example.com           → 192.0.2.80
+    1×  ntp.example.org                          → 192.0.2.123
+    1×  api.contable-nube.example.net            → 192.0.2.44
+    1×  noticias.impuestos.example.org           → 192.0.2.90
+
+=== Sitios HTTPS (SNI) ===
+  13/11/2026 23:00:05  192.168.1.20    → repo.ubuntu-mirror.example.com  (192.0.2.80:443)
+  14/11/2026 01:30:00  192.168.1.20    → api.contable-nube.example.net  (192.0.2.44:443)
+
+=== Pedidos HTTP ===
+  14/11/2026 02:24:52  192.168.1.20    PUT   http://198.51.100.200/up  [201 Created]  UA: curl/8.5.0
+  14/11/2026 03:15:00  192.168.1.20    GET   http://noticias.impuestos.example.org/vencimientos?mes=11  [200 OK]  UA: Wget/1.21.4
+
+=== Conversaciones con más tráfico ===
+     192.168.1.20:51514 →  198.51.100.200:80    TCP HTTP  ↑   900,125  ↓        83  14/11/2026 02:24:52
+     203.0.113.77:56974 →    192.168.1.20:22    TCP SSH   ↑    24,023  ↓    61,040  14/11/2026 02:17:42
+     192.168.1.20:45836 →      192.0.2.80:443   TCP TLS   ↑       407  ↓    41,506  13/11/2026 23:00:05
+     192.168.1.20:50850 →      192.0.2.44:443   TCP TLS   ↑       406  ↓    13,506  14/11/2026 01:30:00
+     192.168.1.10:54716 →    192.168.1.20:22    TCP SSH   ↑     3,023  ↓     9,040  14/11/2026 05:02:00
+     203.0.113.77:40013 →    192.168.1.20:22    TCP SSH   ↑     1,348  ↓     1,376  14/11/2026 01:19:51
+    198.51.100.23:56050 →    192.168.1.20:22    TCP SSH   ↑     1,255  ↓     1,432  13/11/2026 23:37:16
+     203.0.113.77:52016 →    192.168.1.20:22    TCP SSH   ↑     1,313  ↓     1,367  14/11/2026 00:34:37
+      192.0.2.150:48808 →    192.168.1.20:22    TCP SSH   ↑     1,398  ↓     1,266  14/11/2026 01:50:01
+    198.51.100.23:54892 →    192.168.1.20:22    TCP SSH   ↑     1,366  ↓     1,294  14/11/2026 00:22:32
+
+CSV e informe.html en demo\salida/

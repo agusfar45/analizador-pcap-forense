@@ -1,0 +1,5 @@
+fecha_hora,cliente,servidor,nombre,tipo,respuestas
+13/11/2026 23:00:05,192.168.1.20,192.168.1.1,repo.ubuntu-mirror.example.com,A,192.0.2.80
+13/11/2026 23:01:00,192.168.1.20,192.168.1.1,ntp.example.org,A,192.0.2.123
+14/11/2026 01:30:00,192.168.1.20,192.168.1.1,api.contable-nube.example.net,A,192.0.2.44
+14/11/2026 03:15:00,192.168.1.20,192.168.1.1,noticias.impuestos.example.org,A,192.0.2.90

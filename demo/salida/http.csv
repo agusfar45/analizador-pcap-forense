@@ -1,0 +1,3 @@
+fecha_hora,cliente,servidor,metodo,host,uri,user_agent,content_length,respuesta
+14/11/2026 02:24:52,192.168.1.20,198.51.100.200:80,PUT,198.51.100.200,/up,curl/8.5.0,900000,201 Created
+14/11/2026 03:15:00,192.168.1.20,192.0.2.90:80,GET,noticias.impuestos.example.org,/vencimientos?mes=11,Wget/1.21.4,,200 OK
